@@ -28,12 +28,12 @@ void MainWindow::on_Print_data_clicked()
     //model->select();
 
     model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM product");
+    model->setQuery("SELECT Name, Category FROM product");
 
 
-    model->setHeaderData(0, Qt::Horizontal,"Номер");
-    model->setHeaderData(1, Qt::Horizontal,"Название");
-    model->setHeaderData(2, Qt::Horizontal,"Категория");
+    //model->setHeaderData(0, Qt::Horizontal,"Номер");
+    model->setHeaderData(0, Qt::Horizontal,"Название");
+    model->setHeaderData(1, Qt::Horizontal,"Категория");
 
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnsToContents();
@@ -53,4 +53,11 @@ void MainWindow::obr_ref_tab(){
 }
 
 
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    anoTable = new AnotherTable();
+    anoTable->show();
+}
 

@@ -6,7 +6,8 @@
 #include "ui_login.h"
 #include "addrecord.h"
 #include "ui_addrecord.h"
-
+#include "anothertable.h"
+#include "ui_anothertable.h"
 
 //#include <QSqlTableModel>
 #include <QSqlQueryModel>
@@ -26,6 +27,8 @@ public:
 
     Login* logwin;
     AddRecord* dopzap;
+    AnotherTable* anoTable;
+
 private slots:
     void on_action_triggered();
 
@@ -34,6 +37,8 @@ private slots:
     void on_pushButton_clicked();
 
     void obr_ref_tab();
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     //QSqlTableModel* model;
