@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include "login.h"
 #include "ui_login.h"
+#include "addrecord.h"
+#include "ui_addrecord.h"
+
 
 //#include <QSqlTableModel>
 #include <QSqlQueryModel>
@@ -22,11 +25,15 @@ public:
 
 
     Login* logwin;
+    AddRecord* dopzap;
 private slots:
     void on_action_triggered();
 
     void on_Print_data_clicked();
 
+    void on_pushButton_clicked();
+
+    void obr_ref_tab();
 private:
     Ui::MainWindow *ui;
     //QSqlTableModel* model;

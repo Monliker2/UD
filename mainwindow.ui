@@ -15,9 +15,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QTableView" name="tableView"/>
-    </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="Print_data">
       <property name="autoFillBackground">
@@ -27,6 +24,22 @@
        <string>Вывести данные</string>
       </property>
      </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pushButton">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Добавить данные</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" rowspan="3">
+     <widget class="QTableView" name="tableView"/>
     </item>
    </layout>
   </widget>

@@ -40,3 +40,17 @@ void MainWindow::on_Print_data_clicked()
     ui->tableView->show();
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    dopzap = new AddRecord();
+    connect(dopzap, SIGNAL(refresh_table()), this, SLOT(obr_ref_tab()));
+    dopzap->show();
+}
+
+void MainWindow::obr_ref_tab(){
+    on_Print_data_clicked();
+}
+
+
+

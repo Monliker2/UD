@@ -18,6 +18,7 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         login.h login.cpp login.ui
+        addrecord.cpp addrecord.h addrecord.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
