@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QtSql>
 #include <QMessageBox>
+#include <QSettings>
+#include <QRegularExpressionValidator>
+#include <QRegularExpression>
 
 namespace Ui {
 class Login;
@@ -23,6 +26,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+    void saveSettings();
     Ui::Login *ui;
     QSqlDatabase db;
 };

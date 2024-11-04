@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include "login.h"
 #include "ui_login.h"
-#include <QSqlTableModel>
+
+//#include <QSqlTableModel>
+#include <QSqlQueryModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,6 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QSqlTableModel* model;
+    //QSqlTableModel* model;
+    QSqlQueryModel* model;
 };
 #endif // MAINWINDOW_H

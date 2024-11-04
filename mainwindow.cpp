@@ -23,9 +23,13 @@ void MainWindow::on_action_triggered()
 
 void MainWindow::on_Print_data_clicked()
 {
-    model = new QSqlTableModel();
-    model->setTable("product");
-    model->select();
+    //model = new QSqlTableModel();
+    //model->setTable("product");
+    //model->select();
+
+    model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM product");
+
 
     model->setHeaderData(0, Qt::Horizontal,"Номер");
     model->setHeaderData(1, Qt::Horizontal,"Название");
