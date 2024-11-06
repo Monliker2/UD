@@ -10,6 +10,7 @@
 
 #include <QMessageBox>
 #include <QDebug>
+#include <QShortcut>
 
 namespace Ui {
 class Print;

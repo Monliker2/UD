@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QRegularExpressionValidator>
 #include <QRegularExpression>
+#include <QShortcut>
 
 namespace Ui {
 class Login;

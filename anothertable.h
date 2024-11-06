@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QSqlQueryModel>
+#include <QShortcut>
 
 namespace Ui {
 class AnotherTable;

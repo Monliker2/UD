@@ -36,6 +36,7 @@ endif()
 target_link_libraries(UD PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::PrintSupport
 )
 
 # Additional properties

@@ -4,6 +4,10 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QShortcut>
+
+#include <QFileDialog>
 
 namespace Ui {
 class AddRecord;
@@ -17,8 +21,12 @@ public:
     explicit AddRecord(QWidget *parent = nullptr);
     ~AddRecord();
 
+    QString ImgAddr;
+
 private slots:
     void on_pushButton_clicked();
+
+    void on_toolButton_clicked();
 
 signals:
     void refresh_table();

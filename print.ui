@@ -29,10 +29,18 @@
      <property name="text">
       <string>Сформировать</string>
      </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>toolButton</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

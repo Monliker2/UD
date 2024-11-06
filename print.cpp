@@ -6,6 +6,10 @@ Print::Print(QWidget *parent) :
     ui(new Ui::Print)
 {
     ui->setupUi(this);
+
+    this->setAttribute(Qt::WA_DeleteOnClose);
+    QShortcut *escShortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(escShortcut, &QShortcut::activated, this, &QWidget::close);
 }
 
 Print::~Print()
@@ -46,19 +50,19 @@ void Print::on_pushButton_clicked()
     in<<"</table></center></body></html>";
     file->close();
 
-
-
     QProcess *process = new QProcess;
     QStringList args;
     args << "-f" << "docx" << ui->lineEdit->text() << "-o" << QFileInfo(ui->lineEdit->text()).absolutePath();
+
     process->start("unoconv", args);
     process->waitForFinished();
+
+    args.clear();
+    args<<"--writer"<<QFileInfo(ui->lineEdit->text()).absolutePath()+"/"+QFileInfo(ui->lineEdit->text()).baseName()+".docx";
+
+    process->start("libreoffice", args);
+    process->waitForFinished();
     process->close();
-
-
-
-
-
 
 }
 

@@ -6,6 +6,10 @@ AnotherTable::AnotherTable(QWidget *parent) :
     ui(new Ui::AnotherTable)
 {
     ui->setupUi(this);
+
+    this->setAttribute(Qt::WA_DeleteOnClose);
+    QShortcut *escShortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(escShortcut, &QShortcut::activated, this, &QWidget::close);
 }
 
 AnotherTable::~AnotherTable()

@@ -42,6 +42,11 @@ Login::Login(QWidget *parent) :
 
     ui->lineEdit->setEchoMode(QLineEdit::Password);
     mes = new QMessageBox();
+    ui->lineEdit->setFocus();
+
+    this->setAttribute(Qt::WA_DeleteOnClose);
+    QShortcut *escShortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(escShortcut, &QShortcut::activated, this, &QWidget::close);
 }
 
 Login::~Login()

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>669</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,23 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="5" column="0" colspan="3">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Название</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Номер:</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0" colspan="3">
      <widget class="QPushButton" name="pushButton">
       <property name="font">
@@ -26,48 +43,10 @@
       <property name="text">
        <string>Добавить данные</string>
       </property>
-     </widget>
-    </item>
-    <item row="9" column="0" colspan="2">
-     <widget class="QPushButton" name="change_button">
-      <property name="text">
-       <string>Изменить</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_3"/>
-    </item>
-    <item row="0" column="0" colspan="3">
-     <widget class="QPushButton" name="Print_data">
-      <property name="autoFillBackground">
+      <property name="autoDefault">
        <bool>true</bool>
       </property>
-      <property name="text">
-       <string>Вывести данные</string>
-      </property>
      </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Номер:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="3">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>Просмотр других
-таблиц</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_2"/>
-    </item>
-    <item row="0" column="4" rowspan="14">
-     <widget class="QTableView" name="tableView"/>
     </item>
     <item row="4" column="1" colspan="2">
      <widget class="QLineEdit" name="lineEdit">
@@ -80,7 +59,57 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
      </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QPushButton" name="Print_data">
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Вывести данные</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0" colspan="3">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Печать</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2">
+     <widget class="QPushButton" name="delete_button">
+      <property name="text">
+       <string>Удалить</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>Просмотр других
+таблиц</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0" colspan="3">
+     <widget class="QLineEdit" name="lineEdit_2"/>
     </item>
     <item row="7" column="0" colspan="3">
      <widget class="QLabel" name="label_3">
@@ -92,27 +121,52 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="2">
-     <widget class="QPushButton" name="delete_button">
+    <item row="8" column="0" colspan="3">
+     <widget class="QLineEdit" name="lineEdit_3"/>
+    </item>
+    <item row="9" column="0" colspan="2">
+     <widget class="QPushButton" name="change_button">
       <property name="text">
-       <string>Удалить</string>
+       <string>Изменить</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
-    <item row="5" column="0" colspan="3">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Название</string>
+    <item row="0" column="4" rowspan="15">
+     <widget class="QTableView" name="tableView">
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+      <property name="autoScroll">
+       <bool>false</bool>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
       </property>
      </widget>
     </item>
-    <item row="13" column="0" colspan="3">
-     <widget class="QPushButton" name="pushButton_3">
+    <item row="14" column="0" colspan="3">
+     <widget class="QPushButton" name="pushButton_4">
       <property name="text">
-       <string>Печать</string>
+       <string>Печать в pdf</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0" colspan="3">
+     <widget class="QLabel" name="label_4">
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>400</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>     </string>
       </property>
      </widget>
     </item>
@@ -123,7 +177,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1200</width>
      <height>27</height>
     </rect>
    </property>
@@ -142,6 +196,19 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>Print_data</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>change_button</tabstop>
+  <tabstop>delete_button</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -6,6 +6,10 @@ AddRecord::AddRecord(QWidget *parent) :
     ui(new Ui::AddRecord)
 {
     ui->setupUi(this);
+
+    this->setAttribute(Qt::WA_DeleteOnClose);
+    QShortcut *escShortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(escShortcut, &QShortcut::activated, this, &QWidget::close);
 }
 
 AddRecord::~AddRecord()
@@ -16,18 +20,31 @@ AddRecord::~AddRecord()
 void AddRecord::on_pushButton_clicked()
 {
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("INSERT INTO product (Name,Category) VALUES(:name,:category)");
+    query->prepare("INSERT INTO product (Name,Category,PicAddr) VALUES(:name,:category,:picAddr)");
     query->bindValue(":name", ui->lineEdit->text());
     query->bindValue(":category", ui->lineEdit_2->text());
+    query->bindValue(":picAddr", ImgAddr);
 
     QMessageBox* mess = new QMessageBox();
 
     if(!query->exec()){
-        mess->setText("Не верный запрос");
+        mess->setText("Ошибка выполнения запроса: " + query->lastError().text());
         mess->exec();
     }
 
     delete mess;
     emit refresh_table();
+}
+
+
+void AddRecord::on_toolButton_clicked()
+{
+    ImgAddr = QFileDialog::getOpenFileName(0, "Открыть изображение","./","*.jpg *.jpeg *.png *.bmp");
+
+    QSize maxSize = ui->label_3->maximumSize();
+    QPixmap scaledPixmap = QPixmap(ImgAddr).scaled(maxSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    ui->label_3->setScaledContents(true);
+    ui->label_3->setPixmap(scaledPixmap);
 }
 

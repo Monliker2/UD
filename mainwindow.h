@@ -19,6 +19,10 @@
 
 #include <QSqlQueryModel>
 
+#include <QPrinter>
+#include <QTextDocument>
+#include <QFileDialog>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -67,6 +71,8 @@ private slots:
 
     void obr_refreshTable();
     void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 signals:
     void sendID(int);

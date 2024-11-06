@@ -39,6 +39,7 @@ void MainWindow::on_Print_data_clicked()
     model->setHeaderData(0, Qt::Horizontal,"Номер");
     model->setHeaderData(1, Qt::Horizontal,"Название");
     model->setHeaderData(2, Qt::Horizontal,"Категория");
+    model->setHeaderData(3, Qt::Horizontal,"Картинка");
 
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnsToContents();
@@ -74,13 +75,19 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     ui->lineEdit->setText(QString::number(temp_num));
 
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("SELECT Name, Category FROM product WHERE ID=:id");
+    query->prepare("SELECT Name, Category, PicAddr FROM product WHERE ID=:id");
     query->bindValue(":id",temp_num);
 
     if(query->exec()){
         query->next();
         ui->lineEdit_2->setText(query->value(0).toString());
         ui->lineEdit_3->setText(query->value(1).toString());
+
+        QSize maxSize = ui->label_4->maximumSize();
+        QPixmap scaledPixmap = QPixmap(query->value(2).toString()).scaled(maxSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+        ui->label_4->setScaledContents(true);
+        ui->label_4->setPixmap(scaledPixmap);
     }
 }
 
@@ -156,5 +163,43 @@ void MainWindow::on_pushButton_3_clicked()
 {
     pr = new Print();
     pr->show();
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString str;
+
+    str.append("<html><head></head><body><center>"+QString("Пример создания отчёта"));
+    str.append("<table border=1><tr>");
+    str.append("<td>"+QString("Номер")+"</td>");
+    str.append("<td>"+QString("Название")+"</td>");
+    str.append("<td>"+QString("Категория")+"</td></tr>");
+
+    QSqlQuery* query = new QSqlQuery();
+    query->exec("Select ID, Name, Category FROM product");
+
+    while(query->next()){
+        str.append("<tr>");
+        str.append("<td>"+query->value(0).toString()+"</td>");
+        str.append("<td>"+query->value(1).toString()+"</td>");
+        str.append("<td>"+query->value(2).toString()+"</td>");
+        str.append("</tr>");
+    }
+    str.append("</table></center></body></html>");
+
+
+    QPrinter printer;
+    printer.setPageOrientation(QPageLayout::Portrait);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPageSize(QPageSize(QPageSize::A4));
+
+    QString path = QFileDialog::getSaveFileName(0,"Сохранить в PDF","Отчёт","PDF(*.pdf)");
+    if(path.isEmpty()) return;
+
+    printer.setOutputFileName(path);
+    QTextDocument doc;
+    doc.setHtml(str);
+    doc.print(&printer);
 }
 
