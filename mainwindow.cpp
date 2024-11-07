@@ -27,23 +27,25 @@ void MainWindow::on_action_triggered()
 
 void MainWindow::on_Print_data_clicked()
 {
-    fl=1;
-    //model = new QSqlTableModel();
-    //model->setTable("product");
-    //model->select();
+        fl=1;
+        //model = new QSqlTableModel();
+        //model->setTable("product");
+        //model->select();
 
-    model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM product");
+        model = new QSqlQueryModel();
+        model->setQuery("SELECT ID,Name,Category,PicAddr,FORMAT(dat, 'dd.MM.yyyy') FROM product");
 
 
-    model->setHeaderData(0, Qt::Horizontal,"Номер");
-    model->setHeaderData(1, Qt::Horizontal,"Название");
-    model->setHeaderData(2, Qt::Horizontal,"Категория");
-    model->setHeaderData(3, Qt::Horizontal,"Картинка");
+        model->setHeaderData(0, Qt::Horizontal,"Номер");
+        model->setHeaderData(1, Qt::Horizontal,"Название");
+        model->setHeaderData(2, Qt::Horizontal,"Категория");
+        model->setHeaderData(3, Qt::Horizontal,"Картинка");
+        model->setHeaderData(4, Qt::Horizontal,"Дата");
 
-    ui->tableView->setModel(model);
-    ui->tableView->resizeColumnsToContents();
-    ui->tableView->show();
+
+        ui->tableView->setModel(model);
+        ui->tableView->resizeColumnsToContents();
+        ui->tableView->show();
 }
 
 
@@ -75,13 +77,19 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     ui->lineEdit->setText(QString::number(temp_num));
 
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("SELECT Name, Category, PicAddr FROM product WHERE ID=:id");
+    query->prepare("SELECT Name, Category, PicAddr, dat FROM product WHERE ID=:id");
     query->bindValue(":id",temp_num);
 
     if(query->exec()){
         query->next();
         ui->lineEdit_2->setText(query->value(0).toString());
         ui->lineEdit_3->setText(query->value(1).toString());
+        ui->lineEdit_4->setText(query->value(2).toString());
+
+
+        QDate date = query->value(3).toDate();
+        qDebug() << "Дата из базы данных:" << date;
+        ui->dateEdit->setDate(QDate(query->value(3).toDate()));
 
         QSize maxSize = ui->label_4->maximumSize();
         QPixmap scaledPixmap = QPixmap(query->value(2).toString()).scaled(maxSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -95,10 +103,13 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 void MainWindow::on_change_button_clicked()
 {
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("UPDATE product SET Name=:name, Category=:category WHERE ID=:id");
+    query->prepare("UPDATE product SET Name=:name, Category=:category, PicAddr=:pic, dat=:dat WHERE ID=:id");
     query->bindValue(":name", ui->lineEdit_2->text());
     query->bindValue(":category", ui->lineEdit_3->text());
     query->bindValue(":id", ui->lineEdit->text());
+    query->bindValue(":pic", ui->lineEdit_4->text());
+    query->bindValue(":dat", ui->dateEdit->text());
+
     if(query->exec()){
         on_Print_data_clicked();
     }

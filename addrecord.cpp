@@ -10,6 +10,8 @@ AddRecord::AddRecord(QWidget *parent) :
     this->setAttribute(Qt::WA_DeleteOnClose);
     QShortcut *escShortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this);
     connect(escShortcut, &QShortcut::activated, this, &QWidget::close);
+
+    ui->dateEdit->setDate(QDate::currentDate());
 }
 
 AddRecord::~AddRecord()
@@ -20,10 +22,11 @@ AddRecord::~AddRecord()
 void AddRecord::on_pushButton_clicked()
 {
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("INSERT INTO product (Name,Category,PicAddr) VALUES(:name,:category,:picAddr)");
+    query->prepare("INSERT INTO product (Name, Category, PicAddr, dat) VALUES(:name, :category, :picAddr, :dat)");
     query->bindValue(":name", ui->lineEdit->text());
     query->bindValue(":category", ui->lineEdit_2->text());
     query->bindValue(":picAddr", ImgAddr);
+    query->bindValue(":dat", ui->dateEdit->text());
 
     QMessageBox* mess = new QMessageBox();
 

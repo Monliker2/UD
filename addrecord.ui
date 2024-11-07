@@ -6,27 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>493</width>
-    <height>260</height>
+    <width>417</width>
+    <height>329</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="maximumSize">
-      <size>
-       <width>400</width>
-       <height>400</height>
-      </size>
+   <item row="5" column="0" colspan="2">
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
      </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QToolButton" name="toolButton">
      <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>...</string>
      </property>
     </widget>
    </item>
@@ -43,13 +44,19 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QLineEdit" name="lineEdit">
+   <item row="8" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButton">
      <property name="font">
       <font>
        <pointsize>12</pointsize>
        <bold>true</bold>
       </font>
+     </property>
+     <property name="text">
+      <string>Добавить данные</string>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -66,19 +73,19 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton">
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="maximumSize">
+      <size>
+       <width>400</width>
+       <height>400</height>
+      </size>
      </property>
      <property name="text">
-      <string>Добавить данные</string>
+      <string/>
      </property>
-     <property name="autoDefault">
-      <bool>true</bool>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -95,8 +102,8 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QLineEdit" name="lineEdit_2">
+   <item row="1" column="0" colspan="2">
+    <widget class="QLineEdit" name="lineEdit">
      <property name="font">
       <font>
        <pointsize>12</pointsize>
@@ -105,10 +112,39 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QToolButton" name="toolButton">
+   <item row="6" column="0" colspan="2">
+    <widget class="QLabel" name="label_4">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>...</string>
+      <string>Дата</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QDateEdit" name="dateEdit">
+     <property name="dateTime">
+      <datetime>
+       <hour>9</hour>
+       <minute>0</minute>
+       <second>0</second>
+       <year>2024</year>
+       <month>1</month>
+       <day>1</day>
+      </datetime>
+     </property>
+     <property name="displayFormat">
+      <string>dd.MM.yyyy</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
