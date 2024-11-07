@@ -185,16 +185,22 @@ void MainWindow::on_pushButton_4_clicked()
     str.append("<table border=1><tr>");
     str.append("<td>"+QString("Номер")+"</td>");
     str.append("<td>"+QString("Название")+"</td>");
-    str.append("<td>"+QString("Категория")+"</td></tr>");
+    str.append("<td>"+QString("Категория")+"</td>");
+    str.append("<td>"+QString("Картинка")+"</td>");
+    str.append("<td>"+QString("Дата")+"</td></tr>");
 
     QSqlQuery* query = new QSqlQuery();
-    query->exec("Select ID, Name, Category FROM product");
-
+    //query->exec("Select ID, Name, Category FROM product");
+    query->exec("SELECT ID, Name, Category, PicAddr, FORMAT(dat, 'dd.MM.yyyy') FROM product");
+    //qDebug()<<"1234"<< query->value(4).toString();
     while(query->next()){
         str.append("<tr>");
         str.append("<td>"+query->value(0).toString()+"</td>");
         str.append("<td>"+query->value(1).toString()+"</td>");
         str.append("<td>"+query->value(2).toString()+"</td>");
+        str.append("<td>"+query->value(3).toString()+"</td>");
+        str.append("<td>"+query->value(4).toString()+"</td>");
+
         str.append("</tr>");
     }
     str.append("</table></center></body></html>");

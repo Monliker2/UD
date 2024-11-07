@@ -35,16 +35,20 @@ void Print::on_pushButton_clicked()
     in<<"<table border=1><tr>";
     in<<"<td>"+QString("Номер")+"</td>";
     in<<"<td>"+QString("Название")+"</td>";
-    in<<"<td>"+QString("Категория")+"</td></tr>";
+    in<<"<td>"+QString("Категория")+"</td>";
+    in<<"<td>"+QString("Картинка")+"</td>";
+    in<<"<td>"+QString("Дата")+"</td></tr>";
 
     QSqlQuery* query = new QSqlQuery();
-    query->exec("Select * FROM product");
+    query->exec("SELECT ID, Name, Category, PicAddr, FORMAT(dat, 'dd.MM.yyyy') FROM product");
 
     while(query->next()){
         in<<"<tr>";
         in<<"<td>"+query->value(0).toString()+"</td>";
         in<<"<td>"+query->value(1).toString()+"</td>";
         in<<"<td>"+query->value(2).toString()+"</td>";
+        in<<"<td>"+query->value(3).toString()+"</td>";
+        in<<"<td>"+query->value(4).toString()+"</td>";
         in<<"</tr>";
     }
     in<<"</table></center></body></html>";
