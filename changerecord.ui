@@ -7,30 +7,46 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>317</height>
+    <height>384</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label">
      <property name="text">
-      <string>Номер</string>
+      <string>Название</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLineEdit" name="lineEdit_3">
-     <property name="enabled">
-      <bool>false</bool>
+   <item row="8" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Дата</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLineEdit" name="lineEdit_2"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Картинка</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -44,20 +60,23 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label">
+   <item row="7" column="0">
+    <widget class="QLineEdit" name="lineEdit_4"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
-      <string>Название</string>
+      <string>Номер</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QLineEdit" name="lineEdit"/>
-   </item>
-   <item row="8" column="0">
+   <item row="10" column="0">
     <widget class="QPushButton" name="pushButton">
      <property name="text">
       <string>Изменить</string>
@@ -67,21 +86,22 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
-    <widget class="QLineEdit" name="lineEdit_2"/>
-   </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Картинка</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="lineEdit_3">
+     <property name="enabled">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="7" column="0">
-    <widget class="QLineEdit" name="lineEdit_4"/>
+   <item row="9" column="0">
+    <widget class="QDateEdit" name="dateEdit">
+     <property name="displayFormat">
+      <string>dd.MM.yyyy</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

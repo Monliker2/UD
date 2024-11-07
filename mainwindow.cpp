@@ -77,7 +77,7 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     ui->lineEdit->setText(QString::number(temp_num));
 
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("SELECT Name, Category, PicAddr, dat FROM product WHERE ID=:id");
+    query->prepare("SELECT Name, Category, PicAddr, FORMAT(dat, 'dd.MM.yyyy') FROM product WHERE ID=:id");
     query->bindValue(":id",temp_num);
 
     if(query->exec()){
@@ -86,10 +86,8 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
         ui->lineEdit_3->setText(query->value(1).toString());
         ui->lineEdit_4->setText(query->value(2).toString());
 
+        ui->dateEdit->setDate(QDate::fromString(query->value(3).toString(),"dd.MM.yyyy"));
 
-        QDate date = query->value(3).toDate();
-        qDebug() << "Дата из базы данных:" << date;
-        ui->dateEdit->setDate(QDate(query->value(3).toDate()));
 
         QSize maxSize = ui->label_4->maximumSize();
         QPixmap scaledPixmap = QPixmap(query->value(2).toString()).scaled(maxSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -108,7 +106,9 @@ void MainWindow::on_change_button_clicked()
     query->bindValue(":category", ui->lineEdit_3->text());
     query->bindValue(":id", ui->lineEdit->text());
     query->bindValue(":pic", ui->lineEdit_4->text());
-    query->bindValue(":dat", ui->dateEdit->text());
+
+
+    query->bindValue(":dat", ui->dateEdit->date().toString("yyyy-MM-dd"));
 
     if(query->exec()){
         on_Print_data_clicked();

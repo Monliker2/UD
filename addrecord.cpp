@@ -26,7 +26,7 @@ void AddRecord::on_pushButton_clicked()
     query->bindValue(":name", ui->lineEdit->text());
     query->bindValue(":category", ui->lineEdit_2->text());
     query->bindValue(":picAddr", ImgAddr);
-    query->bindValue(":dat", ui->dateEdit->text());
+    query->bindValue(":dat", ui->dateEdit->date().toString("yyyy-MM-dd"));
 
     QMessageBox* mess = new QMessageBox();
 

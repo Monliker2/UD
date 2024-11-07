@@ -22,6 +22,7 @@
 #include <QPrinter>
 #include <QTextDocument>
 #include <QFileDialog>
+#include <QDate>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
