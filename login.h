@@ -26,6 +26,9 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+signals:
+    void refreshComboBox();
+
 private:
     void saveSettings();
     Ui::Login *ui;

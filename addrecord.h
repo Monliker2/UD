@@ -22,11 +22,14 @@ public:
     ~AddRecord();
 
     QString ImgAddr;
+    int catCombo;
 
 private slots:
     void on_pushButton_clicked();
 
     void on_toolButton_clicked();
+
+    void on_comboBox_currentIndexChanged(int index);
 
 signals:
     void refresh_table();

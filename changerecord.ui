@@ -24,6 +24,16 @@
      </property>
     </widget>
    </item>
+   <item row="9" column="0">
+    <widget class="QDateEdit" name="dateEdit">
+     <property name="displayFormat">
+      <string>dd.MM.yyyy</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item row="8" column="0">
     <widget class="QLabel" name="label_5">
      <property name="text">
@@ -33,9 +43,6 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLineEdit" name="lineEdit_2"/>
    </item>
    <item row="3" column="0">
     <widget class="QLineEdit" name="lineEdit"/>
@@ -93,22 +100,14 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="0">
-    <widget class="QDateEdit" name="dateEdit">
-     <property name="displayFormat">
-      <string>dd.MM.yyyy</string>
-     </property>
-     <property name="calendarPopup">
-      <bool>true</bool>
-     </property>
-    </widget>
+   <item row="5" column="0">
+    <widget class="QComboBox" name="comboBox"/>
    </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>lineEdit_3</tabstop>
   <tabstop>lineEdit</tabstop>
-  <tabstop>lineEdit_2</tabstop>
   <tabstop>pushButton</tabstop>
  </tabstops>
  <resources/>

@@ -47,6 +47,8 @@ Login::Login(QWidget *parent) :
     this->setAttribute(Qt::WA_DeleteOnClose);
     QShortcut *escShortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this);
     connect(escShortcut, &QShortcut::activated, this, &QWidget::close);
+
+    //connect(this, &Login::refreshComboBox, MainWindow, &MainWindow::refresh_comboBox);
 }
 
 Login::~Login()
@@ -75,6 +77,8 @@ void Login::on_pushButton_clicked()
     else{
         mes->setText("Не соединилось");
     }
+
+    emit refreshComboBox();
 
     mes->show();
 }

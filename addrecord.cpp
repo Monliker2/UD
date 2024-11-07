@@ -12,6 +12,14 @@ AddRecord::AddRecord(QWidget *parent) :
     connect(escShortcut, &QShortcut::activated, this, &QWidget::close);
 
     ui->dateEdit->setDate(QDate::currentDate());
+
+    QSqlQuery* query = new QSqlQuery();
+    query->exec("SELECT name FROM category");
+    while(query->next()){
+        ui->comboBox->addItem(query->value(0).toString());
+    }
+
+    catCombo = 0;
 }
 
 AddRecord::~AddRecord()
@@ -22,11 +30,12 @@ AddRecord::~AddRecord()
 void AddRecord::on_pushButton_clicked()
 {
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("INSERT INTO product (Name, Category, PicAddr, dat) VALUES(:name, :category, :picAddr, :dat)");
+    query->prepare("INSERT INTO product (Name, Category, PicAddr, dat, catID) VALUES(:name, :category, :picAddr, :dat, :catID)");
     query->bindValue(":name", ui->lineEdit->text());
-    query->bindValue(":category", ui->lineEdit_2->text());
+    query->bindValue(":category", ui->comboBox->itemText(catCombo));
     query->bindValue(":picAddr", ImgAddr);
     query->bindValue(":dat", ui->dateEdit->date().toString("yyyy-MM-dd"));
+    //query->bindValue(":dat", ui->dateEdit->date().toString("yyyy-MM-dd"));
 
     QMessageBox* mess = new QMessageBox();
 
@@ -49,5 +58,11 @@ void AddRecord::on_toolButton_clicked()
 
     ui->label_3->setScaledContents(true);
     ui->label_3->setPixmap(scaledPixmap);
+}
+
+
+void AddRecord::on_comboBox_currentIndexChanged(int index)
+{
+    catCombo = index;
 }
 

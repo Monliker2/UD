@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),SLOT(customMenuReq(QPoint)));
     fl=0;
+
 }
 
 MainWindow::~MainWindow()
@@ -21,6 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_action_triggered()
 {
  logwin = new Login();
+ connect(logwin, &Login::refreshComboBox, this, &MainWindow::refresh_comboBox);
  logwin->show();
 }
 
@@ -77,20 +79,23 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     ui->lineEdit->setText(QString::number(temp_num));
 
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("SELECT Name, Category, PicAddr, FORMAT(dat, 'dd.MM.yyyy') FROM product WHERE ID=:id");
+    query->prepare("SELECT Name, PicAddr, FORMAT(dat, 'dd.MM.yyyy'), Category FROM product WHERE ID=:id");
     query->bindValue(":id",temp_num);
 
     if(query->exec()){
         query->next();
         ui->lineEdit_2->setText(query->value(0).toString());
-        ui->lineEdit_3->setText(query->value(1).toString());
-        ui->lineEdit_4->setText(query->value(2).toString());
 
-        ui->dateEdit->setDate(QDate::fromString(query->value(3).toString(),"dd.MM.yyyy"));
+
+        ui->comboBox->setCurrentIndex(ui->comboBox->findText(query->value(3).toString()));
+
+        ui->lineEdit_4->setText(query->value(1).toString());
+
+        ui->dateEdit->setDate(QDate::fromString(query->value(2).toString(),"dd.MM.yyyy"));
 
 
         QSize maxSize = ui->label_4->maximumSize();
-        QPixmap scaledPixmap = QPixmap(query->value(2).toString()).scaled(maxSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap scaledPixmap = QPixmap(query->value(1).toString()).scaled(maxSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
         ui->label_4->setScaledContents(true);
         ui->label_4->setPixmap(scaledPixmap);
@@ -103,7 +108,8 @@ void MainWindow::on_change_button_clicked()
     QSqlQuery* query = new QSqlQuery();
     query->prepare("UPDATE product SET Name=:name, Category=:category, PicAddr=:pic, dat=:dat WHERE ID=:id");
     query->bindValue(":name", ui->lineEdit_2->text());
-    query->bindValue(":category", ui->lineEdit_3->text());
+    //query->bindValue(":category", ui->lineEdit_3->text());
+    query->bindValue(":category", ui->comboBox->itemText(catCombo));
     query->bindValue(":id", ui->lineEdit->text());
     query->bindValue(":pic", ui->lineEdit_4->text());
 
@@ -218,5 +224,21 @@ void MainWindow::on_pushButton_4_clicked()
     QTextDocument doc;
     doc.setHtml(str);
     doc.print(&printer);
+}
+
+
+void MainWindow::on_comboBox_currentIndexChanged(int index)
+{
+    catCombo = index;
+}
+
+void MainWindow::refresh_comboBox(){
+    QSqlQuery* query = new QSqlQuery();
+    query->exec("SELECT name FROM category");
+    while(query->next()){
+        ui->comboBox->addItem(query->value(0).toString());
+    }
+
+    catCombo = 0;
 }
 

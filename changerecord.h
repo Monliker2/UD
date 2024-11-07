@@ -16,10 +16,14 @@ public:
     explicit ChangeRecord(QWidget *parent = nullptr);
     ~ChangeRecord();
 
+    int catCombo;
+
 private slots:
     void obr_sendID(int);
 
     void on_pushButton_clicked();
+
+    void on_comboBox_currentIndexChanged(int index);
 
 signals:
     void refreshTable();
