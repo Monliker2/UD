@@ -23,6 +23,9 @@ set(PROJECT_SOURCES
     anothertable.cpp anothertable.h anothertable.ui
     changerecord.cpp changerecord.h changerecord.ui
     print.h print.cpp print.ui
+    qcustomplot.h qcustomplot.cpp
+    printgraph.cpp printgraph.h printgraph.ui
+    qcpdocumentobject.cpp qcpdocumentobject.h
 )
 
 # Set executable
@@ -37,6 +40,7 @@ target_link_libraries(UD PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Sql
     Qt${QT_VERSION_MAJOR}::PrintSupport
+
 )
 
 # Additional properties
@@ -47,6 +51,9 @@ set_target_properties(UD PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+
+target_include_directories(UD PRIVATE ${CMAKE_SOURCE_DIR})
+
 
 # Installation
 install(TARGETS UD

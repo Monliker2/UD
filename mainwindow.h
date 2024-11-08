@@ -17,6 +17,9 @@
 #include "print.h"
 #include "ui_print.h"
 
+#include "printgraph.h"
+#include "ui_printgraph.h"
+
 #include <QSqlQueryModel>
 
 #include <QPrinter>
@@ -50,6 +53,8 @@ public:
 
     int catCombo;
 
+    PrintGraph* PrintGR;
+
 private slots:
     void on_action_triggered();
 
@@ -80,6 +85,8 @@ private slots:
     void on_comboBox_currentIndexChanged(int index);
 
     void refresh_comboBox();
+
+    void on_action_2_triggered();
 
 signals:
     void sendID(int);

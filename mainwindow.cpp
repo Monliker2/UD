@@ -242,3 +242,10 @@ void MainWindow::refresh_comboBox(){
     catCombo = 0;
 }
 
+
+void MainWindow::on_action_2_triggered()
+{
+    PrintGR = new PrintGraph();
+    PrintGR->show();
+}
+
