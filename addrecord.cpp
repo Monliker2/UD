@@ -30,7 +30,7 @@ AddRecord::~AddRecord()
 void AddRecord::on_pushButton_clicked()
 {
     QSqlQuery* query = new QSqlQuery();
-    query->prepare("INSERT INTO product (Name, Category, PicAddr, dat, catID) VALUES(:name, :category, :picAddr, :dat, :catID)");
+    query->prepare("INSERT INTO product (Name, Category, PicAddr, dat) VALUES(:name, :category, :picAddr, :dat)");
     query->bindValue(":name", ui->lineEdit->text());
     query->bindValue(":category", ui->comboBox->itemText(catCombo));
     query->bindValue(":picAddr", ImgAddr);
