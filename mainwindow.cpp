@@ -249,3 +249,9 @@ void MainWindow::on_action_2_triggered()
     PrintGR->show();
 }
 
+
+void MainWindow::on_toolButton_clicked()
+{
+    ui->lineEdit_4->setText(QFileDialog::getOpenFileName(0, "Открыть изображение","./","*.jpg *.jpeg *.png *.bmp"));
+}
+

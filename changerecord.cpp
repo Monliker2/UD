@@ -70,3 +70,9 @@ void ChangeRecord::on_comboBox_currentIndexChanged(int index)
     catCombo = index;
 }
 
+
+void ChangeRecord::on_toolButton_clicked()
+{
+    ui->lineEdit_4->setText(QFileDialog::getOpenFileName(0, "Открыть изображение","./","*.jpg *.jpeg *.png *.bmp"));
+}
+

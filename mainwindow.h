@@ -88,6 +88,8 @@ private slots:
 
     void on_action_2_triggered();
 
+    void on_toolButton_clicked();
+
 signals:
     void sendID(int);
 

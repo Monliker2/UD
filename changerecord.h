@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QSqlQuery>
+#include <QFileDialog>
 
 namespace Ui {
 class ChangeRecord;
@@ -24,6 +25,8 @@ private slots:
     void on_pushButton_clicked();
 
     void on_comboBox_currentIndexChanged(int index);
+
+    void on_toolButton_clicked();
 
 signals:
     void refreshTable();
