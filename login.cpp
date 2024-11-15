@@ -60,17 +60,31 @@ Login::~Login()
 
 void Login::on_pushButton_clicked()
 {
-    db = QSqlDatabase::addDatabase("QTDS");
+    db = QSqlDatabase::addDatabase("QODBC");
 
     saveSettings();
 
-    db.setHostName(ui->lineEdit_2->text());
-    db.setPort(ui->lineEdit_5->text().toInt());
-    db.setUserName(ui->lineEdit_3->text());
-    db.setPassword(ui->lineEdit->text());
-    db.setDatabaseName(ui->lineEdit_4->text());
+//    db.setHostName(ui->lineEdit_2->text());
+//    db.setPort(ui->lineEdit_5->text().toInt());
+//    db.setUserName(ui->lineEdit_3->text());
+//    db.setPassword(ui->lineEdit->text());
+//    db.setDatabaseName(ui->lineEdit_4->text());
 
+    QString connectionString = QString(
+        "Driver={FreeTDS};"
+        "Server=%1;"
+        "Port=%2;"
+        "Database=%3;"
+        "TDS_Version=7.3;"
+        "UID=%4;"
+        "PWD=%5;"
+    ).arg(ui->lineEdit_2->text())
+     .arg(ui->lineEdit_5->text().toInt())
+     .arg(ui->lineEdit_4->text())
+     .arg(ui->lineEdit_3->text())
+     .arg(ui->lineEdit->text());
 
+    db.setDatabaseName(connectionString);
     if(db.open()){
         mes->setText("Соединилось");
     }
